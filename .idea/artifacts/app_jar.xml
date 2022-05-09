@@ -1,0 +1,32 @@
+<component name="ArtifactManager">
+  <artifact type="javafx" name="app:jar">
+    <output-path>$PROJECT_DIR$/../../</output-path>
+    <properties id="javafx-properties">
+      <options>
+        <option name="appClass" value="ru.vad1mchk.math.montecarlo.app.MainApplication" />
+        <option name="description" value="" />
+        <option name="height" value="540" />
+        <option name="htmlPlaceholderId" value="" />
+        <option name="icons">
+          <JavaFxApplicationIcons>
+            <option name="linuxIcon" value="$PROJECT_DIR$/kotlin-application/src/main/resources/retro_sun.png" />
+            <option name="windowsIcon" value="$PROJECT_DIR$/kotlin-application/src/main/resources/retro_sun.ico" />
+          </JavaFxApplicationIcons>
+        </option>
+        <option name="msgOutputLevel" value="Verbose" />
+        <option name="title" value="Monte-Carlo Integration Methods" />
+        <option name="vendor" value="Vad1mChK" />
+        <option name="version" value="0.0.0" />
+        <option name="width" value="960" />
+      </options>
+    </properties>
+    <root id="root">
+      <element id="archive" name="MonteCarloIntegrals_kotlin_application.jar">
+        <element id="module-output" name="MonteCarloIntegrals.kotlin-application" />
+        <element id="directory" name="META-INF">
+          <element id="file-copy" path="$PROJECT_DIR$/kotlin-application/src/main/kotlin/META-INF/MANIFEST.MF" />
+        </element>
+      </element>
+    </root>
+  </artifact>
+</component>

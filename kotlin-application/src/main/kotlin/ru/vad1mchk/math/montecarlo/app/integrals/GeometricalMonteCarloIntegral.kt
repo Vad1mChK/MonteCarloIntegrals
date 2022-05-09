@@ -34,15 +34,16 @@ class GeometricalMonteCarloIntegral(
     override fun integrate(): Double {
         // Checks that the borders are not equal or reversed.
         if (isZero) return 0.0
-        val left: Double = if (isReversed) rightLimit else leftLimit
-        val right: Double = if (isReversed) leftLimit else rightLimit
+        var left = if (isReversed) rightLimit else leftLimit
+        var right = if (isReversed) leftLimit else rightLimit
         // Estimates the min and max value of the function.
-        minValue = calculateValue(left)
+        minValue = calculateValue(leftLimit)
         maxValue = minValue
-        for (variable in (left..right step integrationStep)) {
-            val currentValue = calculateValue(variable)
-            if (maxValue < currentValue) maxValue = currentValue
-            if (minValue > currentValue) minValue = currentValue
+        for (variable in left..right step integrationStep) {
+            calculateValue(variable).also {
+                if (minValue > it) minValue = it
+                if (maxValue < it) maxValue = it
+            }
         }
         // Calculate the area of the rectangle
         val bottomArea = (rightLimit - leftLimit) * minValue

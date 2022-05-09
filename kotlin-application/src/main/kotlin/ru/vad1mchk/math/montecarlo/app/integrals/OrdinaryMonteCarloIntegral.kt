@@ -27,8 +27,8 @@ class OrdinaryMonteCarloIntegral(
     override fun integrate(): Double {
         // Checks that the borders are not equal or reversed.
         if (isZero) return 0.0
-        val left: Double = if (isReversed) rightLimit else leftLimit
-        val right: Double = if (isReversed) leftLimit else rightLimit
+        var left = if (isReversed) rightLimit else leftLimit
+        var right = if (isReversed) leftLimit else rightLimit
         // Checks that there is no singularities/discontinuities. If any is detected, throws exception.
         minValue = calculateValue(left)
         maxValue = minValue

@@ -50,7 +50,7 @@ abstract class MonteCarloIntegral(
         isZero = leftLimit == rightLimit
         isReversed = leftLimit > rightLimit
         // If the integral is proper, set the integration step to be 1/DEFAULT_INTEGRATION_INTERVALS of the domain.
-        integrationStep = (rightLimit - leftLimit) / DEFAULT_INTEGRATION_INTERVALS
+        integrationStep = (rightLimit - leftLimit) * (if (isReversed) -1 else 1 )/ DEFAULT_INTEGRATION_INTERVALS
     }
 
     /**
