@@ -6,8 +6,10 @@ package ru.vad1mchk.math.montecarlo.core.util
 object RangeExtensions {
     /**
      * Iterates through a range of doubles with the given [step].
+     *
      * @param step Step of range.
-     * @return An iterable that goes through the same range with the specified step.
+     * @return An iterable that goes through the same range with the
+     *     specified step.
      */
     infix fun ClosedRange<Double>.step(step: Double): Iterable<Double> {
         if (start == endInclusive) {

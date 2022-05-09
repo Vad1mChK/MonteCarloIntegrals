@@ -1,6 +1,5 @@
 package ru.vad1mchk.math.montecarlo.app.gui
 
-import javafx.event.EventHandler
 import javafx.geometry.Insets
 import javafx.scene.control.ChoiceBox
 import javafx.scene.control.Label

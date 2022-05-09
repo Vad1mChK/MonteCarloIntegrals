@@ -43,6 +43,7 @@ class MainTab : Tab() {
     val yAxis = NumberAxis("y", -2.0, 2.0, 1.0)
     var chart = LineChart(xAxis, yAxis)
     val hBox = HBox()
+
     init {
         textProperty().bind(Strings.createBinding("labelMain"))
         content = hBox
@@ -127,7 +128,7 @@ class MainTab : Tab() {
             add(radioButtonOrdinary, 0, 6)
             add(radioButtonGeometrical, 0, 7)
             add(errorLine, 0, 8, 2, 1)
-            add(answerLine, 0, 9,2,1)
+            add(answerLine, 0, 9, 2, 1)
         }
 
         hBox.apply {
@@ -155,19 +156,25 @@ class MainTab : Tab() {
         val integral: MonteCarloIntegral = if (isGeometricalMethodProperty.get()) {
             GeometricalMonteCarloIntegral(leftBorderProperty.get(), rightBorderProperty.get(), integrand)
         } else OrdinaryMonteCarloIntegral(leftBorderProperty.get(), rightBorderProperty.get(), integrand)
-        integralValueProperty.set(try {
-            integral.integrate()
-        } catch (e: IntegralException) {
-            errorStringProperty.set("${e.message}")
-            return
-        })
-        answerStringProperty.bind(Strings.createBinding(
-            "mainResult", integralValueProperty.get())
+        integralValueProperty.set(
+            try {
+                integral.integrate()
+            } catch (e: IntegralException) {
+                errorStringProperty.set("${e.message}")
+                return
+            }
+        )
+        answerStringProperty.bind(
+            Strings.createBinding(
+                "mainResult", integralValueProperty.get()
+            )
         )
         chart = LineChart(
             NumberAxis("x", leftBorder, rightBorder, (rightBorder - leftBorder) / 20),
-            NumberAxis("y", integral.minValue, integral.maxValue,
-                (integral.maxValue - integral.minValue) / 20)
+            NumberAxis(
+                "y", integral.minValue, integral.maxValue,
+                (integral.maxValue - integral.minValue) / 20
+            )
         ).also {
             it.isLegendVisible = false
         }
@@ -182,6 +189,6 @@ class MainTab : Tab() {
             chart.data.add(XYChart.Series(FXCollections.observableArrayList(XYChart.Data(dot.first, dot.second))))
         }
         hBox.children.removeFirst()
-        hBox.children.add(0,chart)
+        hBox.children.add(0, chart)
     }
 }

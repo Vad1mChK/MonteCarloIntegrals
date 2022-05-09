@@ -4,7 +4,6 @@ import javafx.beans.property.SimpleDoubleProperty
 import javafx.beans.property.SimpleIntegerProperty
 import javafx.beans.property.SimpleListProperty
 import javafx.collections.FXCollections
-import javafx.collections.ObservableList
 import javafx.scene.image.Image
 
 /** Default configuration of certain application properties. */

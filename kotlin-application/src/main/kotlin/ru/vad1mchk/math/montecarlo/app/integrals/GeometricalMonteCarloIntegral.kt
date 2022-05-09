@@ -65,6 +65,6 @@ class GeometricalMonteCarloIntegral(
     }
 
     override fun toString(): String {
-        return "Geometrical "+super.toString()
+        return "Geometrical " + super.toString()
     }
 }

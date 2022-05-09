@@ -47,12 +47,12 @@ class OrdinaryMonteCarloIntegral(
             val variable = (left..right).random()
             val currentValue = calculateValue(variable)
             sumOfFunctions += calculateValue(variable)
-            if (i<dotsToShow) shownDots.add(Pair(variable, currentValue))
+            if (i < dotsToShow) shownDots.add(Pair(variable, currentValue))
         }
         return (rightLimit - leftLimit) * sumOfFunctions / dotsToDrop
     }
 
     override fun toString(): String {
-        return "Ordinary "+super.toString()
+        return "Ordinary " + super.toString()
     }
 }

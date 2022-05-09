@@ -8,6 +8,7 @@ import ru.vad1mchk.math.montecarlo.core.exceptions.IntegralException
 interface Integral {
     /**
      * Calculates the definite integral of the function.
+     *
      * @return The double value of the definite integral.
      * @throws IntegralException if the integration did not succeed.
      */

@@ -7,7 +7,7 @@ import ru.vad1mchk.math.montecarlo.app.gui.RootBox
 import ru.vad1mchk.math.montecarlo.app.util.Configuration
 import ru.vad1mchk.math.montecarlo.app.util.Strings
 
-class MainApplication: Application() {
+class MainApplication : Application() {
     companion object {
         @JvmStatic
         fun main(args: Array<String>) {
