@@ -3,6 +3,7 @@ package ru.vad1mchk.math.montecarlo.app.integrals
 import net.objecthunter.exp4j.Expression
 import ru.vad1mchk.math.montecarlo.core.exceptions.ImproperIntegralException
 import ru.vad1mchk.math.montecarlo.core.integrals.Integral
+import ru.vad1mchk.math.montecarlo.core.util.RangeExtensions.step
 
 /**
  * Basic implementation of definite integrals calculated using
@@ -116,6 +117,20 @@ abstract class MonteCarloIntegral(
             )
         }
         return currentValue
+    }
+
+    protected fun calculateMinMax() {
+        val left = if (isReversed) rightLimit else leftLimit
+        var right = if (isReversed) leftLimit else rightLimit
+        // Estimates the min and max value of the function.
+        minValue = calculateValue(leftLimit)
+        maxValue = minValue
+        for (variable in left..right step integrationStep) {
+            calculateValue(variable).also {
+                if (minValue > it) minValue = it
+                if (maxValue < it) maxValue = it
+            }
+        }
     }
 
     override fun toString(): String {

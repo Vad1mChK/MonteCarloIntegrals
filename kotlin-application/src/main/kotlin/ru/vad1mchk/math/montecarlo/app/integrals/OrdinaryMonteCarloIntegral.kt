@@ -27,17 +27,12 @@ class OrdinaryMonteCarloIntegral(
     override fun integrate(): Double {
         // Checks that the borders are not equal or reversed.
         if (isZero) return 0.0
-        var left = if (isReversed) rightLimit else leftLimit
-        var right = if (isReversed) leftLimit else rightLimit
+        val left = if (isReversed) rightLimit else leftLimit
+        val right = if (isReversed) leftLimit else rightLimit
         // Checks that there is no singularities/discontinuities. If any is detected, throws exception.
-        minValue = calculateValue(left)
-        maxValue = minValue
-        for (variable in left..right step integrationStep) {
-            calculateValue(variable).also {
-                if (minValue > it) minValue = it
-                if (maxValue < it) maxValue = it
-            }
-        }
+
+        calculateMinMax()
+
         // Gets the property (count of dots to show, list of shown dots)
         val dotsToShow = Configuration.dotsToShowProperty.get()
         val shownDots = Configuration.shownDotsProperty.get()

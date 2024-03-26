@@ -3,23 +3,23 @@ package ru.vad1mchk.math.montecarlo.app.util
 import javafx.beans.binding.Bindings
 import javafx.beans.binding.StringBinding
 import javafx.beans.property.SimpleObjectProperty
-import javafx.beans.value.ChangeListener
 import java.text.MessageFormat
 import java.util.*
 import java.util.concurrent.Callable
 
+@Suppress("unused")
 object Strings {
-    const val bundleName = "strings"
+    private const val BUNDLE_NAME = "strings"
     val supportedLocales = listOf<Locale>(Locale.US, Locale("ru", "RU"), Locale.CHINA)
 
     fun defaultLocale(): Locale {
         return if (Locale.getDefault() in supportedLocales) Locale.getDefault() else Locale.US
     }
 
-    val localeProperty = SimpleObjectProperty<Locale>(defaultLocale()).also {
-        it.addListener(ChangeListener { observable, oldValue, newValue ->
+    val localeProperty = SimpleObjectProperty(defaultLocale()).also {
+        it.addListener { _, _, newValue ->
             Locale.setDefault(newValue)
-        })
+        }
     }
 
     fun getLocale(): Locale {
@@ -32,7 +32,7 @@ object Strings {
     }
 
     operator fun get(key: String, vararg args: Any): String {
-        return MessageFormat.format(ResourceBundle.getBundle(bundleName, getLocale()).getString(key), *args)
+        return MessageFormat.format(ResourceBundle.getBundle(BUNDLE_NAME, getLocale()).getString(key), *args)
     }
 
     fun createBinding(key: String, vararg args: Any): StringBinding {
