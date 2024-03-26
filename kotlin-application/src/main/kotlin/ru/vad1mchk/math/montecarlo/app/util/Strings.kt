@@ -22,6 +22,7 @@ object Strings {
         }
     }
 
+    // STOPSHIP
     fun getLocale(): Locale {
         return localeProperty.get()
     }
